@@ -26,7 +26,6 @@ use std::error::Error;
 use std::hash::{Hash, Hasher};
 use std::time::Duration;
 use tokio::{io, io::AsyncBufReadExt, select};
-use tracing_subscriber::EnvFilter;
 
 // We create a custom network behaviour that combines Gossipsub and Mdns.
 #[derive(NetworkBehaviour)]
@@ -79,7 +78,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .build();
 
     println!("Started as peer: {}", swarm.local_peer_id());
-    ;
+
     // Create a Gossipsub topic
     let topic = gossipsub::IdentTopic::new("test-net");
     // subscribes to our topic
